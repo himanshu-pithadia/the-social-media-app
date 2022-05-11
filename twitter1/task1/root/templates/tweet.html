@@ -1,0 +1,84 @@
+{% extends 'home.html' %}
+{% load static %}
+
+{% block title %}Tweet | TalkSnap{% endblock title %}
+{% block extracss %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+<link rel="stylesheet" href="{% static 'css/tweet.css' %}">
+{% endblock extracss %}
+
+{% block section1 %}
+    {% comment %} {{block.super}}   {% endcomment %}
+
+    <div class="container-fluid tweet-page" id="tweet-id">
+        <div class="row">
+            <div class="tweet-content">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Tweet</h2>
+                        <span>
+                            <i class="fas fa-times" onclick='document.getElementById("tweet-id").style.display = "none"; 
+                            location.href = "{% url 'home' %}"'></i>
+                        </span>
+                    </div>
+                    <div class="card-body">
+                        <div class="user-part">
+                            <div class="user-pic">
+                                {% if user.profile.profile_image %}
+                                    <img src="{{user.profile.profile_image.url}}" id="profile_pic" alt="#">
+                                {% else %}
+                                    <img src="{% static '../static/images/default.png' %}" id="profile_pic" alt="#">
+                                {% endif %}
+                            </div>
+                            <h3>@{{user.username}}</h3>
+                        </div>
+                        <div class="form-area">
+                            <form action="" method="POST" novalidate class="p-3" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                {{form.post_text}}
+                                <span>
+                                    <small id="counts">280/280</small>
+                                </span>
+                                <span class="input-image">
+                                    <label for="id_post_image">
+                                        <i class="far fa-image"></i>
+                                    </label>
+                                    {{form.post_image}}
+                                </span>
+                                <i class="fas fa-check" id="done" onmouseover="showi(this)" onmouseout="hidei(this)"></i>
+                                <i class="fas fa-times" id='undone' onclick="undone(this)"></i>
+                                <button type="submit" class="btn"><i class="fas fa-paper-plane"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="image-preview">
+                        <div id="image_pre"></div>
+                    </div>
+                    <div class="card-footer"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock section1 %}
+
+{% block extrajs %}
+    {{block.super}}
+    {% comment %} <script>
+        function showi(x){
+            x.style.display = 'none';
+            document.getElementById('undone1').style.display = 'inline-block';
+        }
+        function hidei(x){
+            x.style.display = 'inline-block';
+            document.getElementById('undone1').style.display = 'none';
+        }
+        function donef(){
+            document.getElementById('done1').style.display = 'inline-block';
+        }
+        function undone(x){
+            document.getElementById('id_post_image').value = '';
+            document.getElementById('done1').style.display = 'none';
+        }
+    </script> {% endcomment %}
+{% endblock extrajs %}
+

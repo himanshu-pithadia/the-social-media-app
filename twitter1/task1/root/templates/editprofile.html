@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Edit - Profile | TalkSnap{% endblock title %}
+
+{% block extracss %}
+    <link rel="stylesheet" href="{% static 'css/editprofile.css' %}">
+{% endblock extracss %}
+
+{% block section1 %}
+    <div class="edit-section">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{message.tags}} alert-dismissible fade show p-1 pt-2" role="alert">
+            <h6 class="err">{{message |safe}}</h6>
+            <button type="button" class="btn-close btn-sm p-2 pt-3" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+        {% endif %}
+        <div class="edit-profile">
+            <form action="" method="POST" novalidate class="p-3" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="input-image">
+                    <label for="id_profile_image">
+                        <div class="user-pic-change" id='image-preview'>
+                            {% if us.profile.profile_image %}
+                            <img src="{{us.profile.profile_image.url}}" id="profile_pic" alt="#">
+                            {% else %}
+                            <img src="{% static '../static/images/default.png' %}" id="profile_pic">
+                            {% endif %}
+                            <i class="fas fa-camera"></i>
+                        </div>
+                    </label>
+                    {{form.profile_image}}
+                </div>
+                <div class="form-row">
+                    <div class="col-md-3 m-3">
+                        <label for="id_first_name">First name</label>
+                        <input type="text" class="form-control" id="id_first_name" value="{{us.first_name}}" disabled>
+                    </div>
+                    <div class="col-md-3 m-3">
+                        <label for="id_last_name">Last name</label>
+                        <input type="text" class="form-control" id="id_last_name" value="{{us.last_name}}" disabled>
+                    </div>
+                    <div class="col-md-3 m-3">
+                        <label for="validationDefaultUsername">Username</label>
+                        <input type="text" class="form-control" id="id_username" value="{{us.username}}" disabled>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-3 m-3">
+                        <label for="id_dob">Date of Birth</label>
+                        {{form.dob}}
+                    </div>
+                    <div class="col-md-3 m-3">
+                        <label for="id_email">Email-Id</label>
+                        <input type="text" class="form-control" id="id_email" value="{{us.email}}" disabled>
+                    </div>
+                    <div class="col-md-3 m-3">
+                        <label for="id_location">location</label>
+                        {{form.location}}
+                    </div>
+                </div>
+                <div class="bio-data">
+                    <label for="id_bio">Bio</label>
+                    {{form.bio}}
+                </div>
+                <div class="sb-btn">
+                    <button type="submit" class="btn btn-dark">Submit</button>
+                </div>
+            </form>
+            <div class="more-btn mx-auto">
+                <a href="{% url 'profile' us.username %}"><button class='btn btn-dark'>Back to Profile</button></a>
+                <a href="{% url 'change-password' %}"><button class='btn btn-dark p-1'>Change Password</button></a>
+                <a href="{% url 'confirm-del' us.username %}"><button class='btn btn-dark p-1'>Delete Account</button></a>
+            </div>
+        </div>
+    </div>
+    {% comment %} {{request.user.id}} == {{us.profile.user_id}} {% endcomment %}
+{% endblock section1 %}
+
+{% block extrajs %}
+    <script>
+        function pro_pic(event){
+            if(event.target.files.length > 0){
+                var src = URL.createObjectURL(event.target.files[0]);
+                var preview = document.getElementById('profile_pic');
+                preview.src = src;
+            };
+        };
+    </script>
+{% endblock extrajs %}

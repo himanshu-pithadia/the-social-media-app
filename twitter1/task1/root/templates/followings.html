@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Followers | TalkSnap{% endblock title %}
+
+{% block extracss %}
+    <link rel="stylesheet" href="{% static 'css/people.css' %}">
+{% endblock extracss %}
+
+{% block section1 %}
+    <div class="peoples">
+        <div class="header_counter d-flex justify-content-between px-3 mb-3">
+            <div class="follower_count px-3">
+                <h4>{{followings.following.all|length}} Followings</h4>
+            </div>
+            <div class="back-btn px-3">
+                <a href="{% url 'profile' s_username %}">
+                    <button class='btn btn-dark' style="outline:5px solid whitesmoke;">Back</button>
+                </a>
+            </div>
+        </div>
+        {% if followings.following.all|length == 0 %}
+        <div class="card p-2 text-center m-5 w-50">
+            <h3>You Have Not Follow Any People</h3>
+        </div>
+        {% else %}
+        {% for following in followings.following.all %}
+            <div class="people-list">
+                <div class="users-info">
+                    <div class="user-pic">
+                        {% comment %} {{following.username}} {% endcomment %}
+                        <a href="{% url 'profile' following.username %}">
+                            {% if following.profile.profile_image %}
+                            <img src="{{following.profile.profile_image.url}}" id="profile_pic" alt="#">
+                            {% else %}
+                            <img src="{% static '../static/images/default.png' %}" id="profile_pic" alt="#">
+                            {% endif %}
+                        </a>
+                    </div>
+                    <div class="user-det">
+                        <a href="{% url 'profile' following.username %}">
+                            <h5>{{following.first_name}} {{following.last_name}}</h5>
+                        </a>
+                        <span>
+                            <p class="text-muted">@{{following.username}}</p>
+                        </span>
+                    </div>
+                </div>
+                <div class="follow-btn">
+                    {% if following in user.profile.following.all %}
+                        <button class="btn btn-dark change" id="{{following.id}}" onclick="follow({{following.id}})" url="{% url 'follow' following.id %}">Unfollow</button>
+                    {% else %}
+                        {% if following == request.user %}
+                            <button class="btn btn-dark d-none" id="{{following.id}}" onclick="follow({{following.id}})" url="{% url 'follow' following.id %}">Follow</button>
+                        {% else %}
+                            <button class="btn btn-dark" id="{{following.id}}" onclick="follow({{following.id}})" url="{% url 'follow' following.id %}">Follow</button>
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+    </div>
+{% endblock section1 %}
+
+{% block extrajs %}
+    <script>
+        function follow(n){
+            let btnId = document.getElementById(n);
+            let btnTxt = btnId.innerHTML;
+            let myurl = btnId.getAttribute('url');
+            
+            const xhr = new XMLHttpRequest();
+            xhr.open('get',myurl,true);
+            xhr.responseType = 'json';
+            xhr.onload = () => {
+                if(xhr.status === 200){
+                    x = xhr.response;
+                    console.log(x);
+                }
+            };
+            xhr.send();
+
+            if (btnTxt == 'Follow'){
+                btnId.innerHTML = "Unfollow";
+                btnId.classList.add('change');
+            }
+            if (btnTxt == 'Unfollow'){
+                btnId.innerHTML = "Follow";
+                btnId.classList.remove('change');
+            }            
+        }
+    </script>
+{% endblock extrajs %}

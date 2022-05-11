@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Peoples | TalkSnap{% endblock title %}
+
+{% block extracss %}
+    <link rel="stylesheet" href="{% static 'css/people.css' %}">
+{% endblock extracss %}
+
+{% block section1 %}
+    <div class="peoples">
+        <div class="serch d-flex justify-content-between px-3 mb-3">
+            <div class="follower_count px-3">
+                <h5>{{users|length}} results found</h5>
+            </div>
+            <div class="back-btn px-3">
+                <a href="{% url 'people' %}">
+                    <button class='btn btn-dark' style="outline:5px solid whitesmoke;">Back</button>
+                </a>
+            </div>
+        </div>
+        {% for us in users %}
+            <div class="people-list">
+                <div class="users-info">
+                    <div class="user-pic">
+                        <a href="{% url 'profile' us.username %}">
+                            {% if us.profile.profile_image %}
+                            <img src="{{us.profile.profile_image.url}}" id="profile_pic" alt="#">
+                            {% else %}
+                            <img src="{% static '../static/images/default.png' %}" id="profile_pic" alt="#">
+                            {% endif %}
+                        </a>
+                    </div>
+                    <div class="user-det">
+                        <a href="{% url 'profile' us.username %}">
+                            <h5>{{us.first_name}} {{us.last_name}}</h5>
+                        </a>
+                        <span>
+                            <p class="text-muted">@{{us.username}}</p>
+                        </span>
+                    </div>
+                </div>
+                <div class="follow-btn">
+                    {% if us.username in user.profile.following.all|unordered_list %}
+                        <button class="btn btn-dark change" id="{{us.id}}" onclick="follow({{us.id}})" url="{% url 'follow' us.id %}">Unfollow</button>
+                    {% else %}
+                        <button class="btn btn-dark" id="{{us.id}}" onclick="follow({{us.id}})" url="{% url 'follow' us.id %}">Follow</button>
+                    {% endif %}
+                    
+                </div>
+            </div>
+        {% endfor %}
+    </div>    
+{% endblock section1 %}
+
+{% block extrajs %}
+    <script>
+        function follow(n){
+            let btnId = document.getElementById(n);
+            let btnTxt = btnId.innerHTML;
+            let myurl = btnId.getAttribute('url');
+            
+            const xhr = new XMLHttpRequest();
+            xhr.open('get',myurl,true);
+            xhr.responseType = 'json';
+            xhr.onload = () => {
+                if(xhr.status === 200){
+                    x = xhr.response;
+                    console.log(x);
+                }
+            };
+            xhr.send();
+
+            if (btnTxt == 'Follow'){
+                btnId.innerHTML = "Unfollow";
+                btnId.classList.add('change');
+            }
+            if (btnTxt == 'Unfollow'){
+                btnId.innerHTML = "Follow";
+                btnId.classList.remove('change');
+            }            
+        }
+    </script>
+{% endblock extrajs %}

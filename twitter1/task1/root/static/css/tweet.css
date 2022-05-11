@@ -1,0 +1,77 @@
+.tweet-page{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* background: rgb(0, 0, 0); */
+    background: rgb(0, 0, 0,0.4);
+    z-index: 999;
+    margin: auto;
+}
+
+.tweet-content .card{
+    background: white;
+    width: 60%;
+    margin: 15% auto;
+}
+
+.tweet-content .card-header{
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 25px;
+    border-bottom: 2px solid grey;
+    font-size: 30px;
+    background-color: rgba(0, 0, 0, 0.212);
+}
+.tweet-content .card-header i:hover{
+    color: white;
+    cursor: pointer;
+}
+
+.tweet-content .card .card-body{
+    display: block;
+    width: 100%;
+    height: 300px;
+}
+.tweet-content .card .user-part{
+    width: 50%;
+    display: inline-flex;
+    align-items: center;
+    text-align: justify;
+}
+.tweet-content .card .user-part .user-pic{
+    margin: 10px;
+}
+.tweet-content .card .user-part .user-pic img{
+    margin-left: -0.2px;
+}
+
+.tweet-content .card .form-area{
+    width: 100%;
+    margin: auto;
+    margin-top: 4px;
+}
+
+
+@media screen and (max-width:770px){
+    .tweet-content .card{
+        width: 80%;
+    }
+}
+
+@media screen and (max-width:575px) {
+    .tweet-page{
+        position: relative;
+        background: none;
+        z-index: none;
+        margin: 0;
+    }
+    .tweet-content .card{
+        width: 100%;
+        margin: auto;
+    }
+    
+}
+

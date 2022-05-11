@@ -1,0 +1,355 @@
+/* Profile-details section */
+.profile-details {
+    width: 100%;
+    padding: 15px;
+    /* background: black; */
+}
+
+/* profile-background */
+.user-profile .profile-pic {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 150px;
+}
+
+.user-profile .profile-pic .user-part {
+    width: 50%;
+    background: rgba(226, 223, 223, 0.61);
+    display: flex;
+    align-items: center;
+    border-radius: 100px;
+}
+
+.user-profile .profile-pic .user-part .user-pic {
+    width: 150px;
+    height: 150px;
+    border: none;
+}
+
+.user-profile .profile-pic .user-part .user-pic img {
+    width: 148px;
+    height: 148px;
+    margin: auto;
+    margin-left: -5px;
+    outline: 5px solid white;
+}
+
+.user-profile .user-part .user-fl {
+    width: fit-content;
+    margin: auto 10px;
+    /* line-height: 5px; */
+}
+
+.user-profile .user-part .user-fl h2 {
+    margin-bottom: 0 !important;
+}
+
+.user-profile .user-part .user-fl p {
+    font-size: 20px;
+    color: rgb(97, 95, 95);
+    margin-bottom: 0 !important;
+}
+
+/* user-follow */
+.user-profile .profile-pic .user-follow {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 24px;
+}
+
+.user-profile .user-follow a {
+    text-decoration: none;
+    color: black;
+}
+
+/* buttons */
+.buttons {
+    width: 25%;
+    display: flex;
+    margin: 20px 0px;
+    justify-content: end;
+}
+
+.buttons .follow-btn .btn {
+    outline: 5px solid white;
+}
+
+/* .buttons .btn:hover{
+    background-color: white;
+    color: black;
+} */
+.follow-btn .change {
+    background: white;
+    color: black;
+}
+
+/* profile-data */
+.profile-data {
+    width: 70%;
+    text-align: justify;
+    padding: 0px 15px;
+}
+
+.user-all-data .info-us {
+    color: black;
+    margin: 8px;
+}
+
+.user-all-data .info-us i {
+    width: 20px;
+    font-size: 18px;
+    margin: auto;
+    color: rgb(73, 72, 72);
+}
+
+/* tweet */
+.tweet-show-area {
+    margin-top: 25px;
+}
+
+.tweet-show-area .tit {
+    display: block;
+    width: fit-content;
+    border-bottom: 3px solid lightgrey;
+}
+
+.tweet-show {
+    width: 100%;
+    display: flex;
+    /* border-bottom: 1px solid lightgray; */
+    padding: 15px;
+    /* max-height: 800px; */
+}
+
+.tweet-show:hover {
+    background: white;
+}
+
+/* user-pic */
+.tweet-show .user-part {
+    /* width: 70px; */
+    display: block;
+    width: 6%;
+}
+
+.tweet-show .user-pic {
+    margin: 10px auto;
+    /* margin-top: 10px; */
+    border: none;
+}
+
+.tweet-show .user-pic img {
+    width: 45px;
+    height: 45px;
+}
+
+/* tweet username, text and image */
+/* username part */
+.tweet-show .tweet-part {
+    margin: auto 0px;
+    padding: 5px 15px;
+    width: 93%;
+}
+
+.tweet-show .tweet-part .user-action {
+    display: flex;
+    height: 50px;
+    /* background: black; */
+    align-items: center;
+    justify-content: space-between;
+}
+
+.tweet-show .user-action .user-name .user-det {
+    display: inline-flex;
+    height: fit-content;
+}
+
+.tweet-show .user-action .user-name .user-det h4 {
+    margin: auto;
+}
+
+.tweet-show .user-action .user-name .user-det p::before {
+    content: '-';
+    margin: auto 5px;
+    color: lightgray;
+}
+
+.tweet-show .user-action .user-name .user-det p {
+    margin: auto;
+}
+
+.tweet-show .user-action .user-name small {
+    display: block;
+    font-size: 12px;
+}
+
+.tweet-show .user-action .actions a {
+    color: rgb(156, 154, 154);
+}
+
+/* text part */
+.tweet-show .tweet-part .tweet-text,
+.tweet-show .tweet-part .tweet-pic {
+    margin-top: 10px;
+}
+
+/* image part */
+.tweet-show .tweet-part .tweet-pic {
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
+.tweet-show .tweet-part .tweet-pic .post-in-pic {
+    padding: 5px;
+}
+
+.tweet-show .tweet-part .tweet-pic .post-in-pic img {
+    width: 100%;
+    max-height: 400px;
+}
+
+.tweet-like button {
+    color: rgba(97, 95, 95, 0.26);
+    background: transparent;
+    border: none;
+}
+
+.tweet-like button:focus {
+    border: none !important;
+    outline: none !important;
+}
+
+
+
+
+/* Start Responsive */
+
+@media screen and (max-width:1050px) {
+    .user-profile .profile-pic .user-part {
+        width: 55%;
+    }
+
+    .user-profile .user-part .user-fl h2 {
+        font-size: 24px;
+    }
+
+    .user-profile .user-part .user-fl p {
+        font-size: 16px;
+    }
+
+    .user-profile .profile-pic .user-follow {
+        width: 45%;
+        font-size: 20px;
+    }
+}
+
+
+@media screen and (max-width:575px) {
+    /* profile-background */
+    .profile-details{
+        padding:10px 5px;
+    }
+    .user-profile .profile-pic {
+        margin: 0;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .user-profile .profile-pic .user-part {
+        width: 100%;
+        height: 100px;
+    }
+
+    .user-profile .profile-pic .user-part .user-pic {
+        width: 100px;
+        height: 100px;
+    }
+
+    .user-profile .profile-pic .user-part .user-pic img {
+        width: 98px;
+        height: 98px;   
+    }
+
+    /* user-follow */
+    .user-profile .profile-pic .user-follow {
+        width: 100%;
+        font-size: 18px;
+        justify-content: space-around;
+    }
+    .user-profile .profile-pic .user-follow p{
+        margin-bottom: 0 !important;
+    }
+
+    .buttons{
+        display: block;
+        width: 100%;
+        margin: 15px auto;
+        justify-content: start;
+        padding: 5px;
+    }
+
+    .buttons button{
+        width: 100%;
+        /* display: block; */
+    }
+
+    .profile-data {
+        width: 100%;
+        padding: 5px;
+    }
+
+    .tweet-show-area {
+        margin-top: 0px;
+    }
+    .tweet-show-area .tit{
+        margin: 0 !important;
+        margin-left: 15px !important;
+        text-align: center;
+    }
+    .tweet-show{
+        padding: 10px;
+    }
+    .tweet-show .user-part{
+        width: 15%;
+    }
+    .tweet-show .tweet-part{
+        padding: 5px;
+    }
+    /* .tweet-show-area .card{
+        width: 75% !important;
+    } */
+    .tweet-show-area .card h5{
+        margin-bottom: 0;
+        font-size: 18px;
+    }
+    .tweet-show .user-action .user-name .user-det{
+        display: flex;
+        flex-direction: column;
+    }
+    .tweet-show .user-action .user-name .user-det h4{
+        font-size: 16px;
+    }
+    .tweet-show .user-action .user-name .user-det p{
+        font-size: 14px;
+        margin: 0;
+    }
+    .tweet-show .tweet-part .tweet-text{
+        margin-top: 15px;
+        line-height: 1.1rem;
+    }
+    .tweet-like{
+        margin: 0 !important;
+        margin: 5px !important;
+    }
+    .tweet-show-area .card{
+        margin: 15px !important;
+        width: 90% !important;
+        padding: 5px !important;
+    }
+    .tweet-show-area .card h3{
+        font-size: 18px;
+    }
+}

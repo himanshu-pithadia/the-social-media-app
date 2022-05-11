@@ -1,0 +1,133 @@
+
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: content-box;
+    background-color : white;
+}
+.signup-in{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signup-row{
+    background: url('../images/bg-singup.jpg');
+    background-size: cover;
+    color: whitesmoke;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    border-radius: 25px;
+    box-shadow: 5px 15px 10px 10px #ebebeb;
+}
+form{
+    display: block;
+    width: 80%;
+    margin: 10px auto;
+    padding: 8px 15px;
+}
+
+form .tags{
+    margin: 10px 0;
+}
+.sign-col h3{
+    text-align: center;
+    margin: 10px;
+    margin-top: 15px;
+    /* padding: 10px; */
+    font-size: 35px;
+    font-family :Verdana, Geneva, Tahoma, sans-serif;
+}
+.sign-col .lnk{
+    text-align: center;
+    /* margin: 10px auto; */
+    padding: 10px auto;
+}
+.sign-col .lnk a{
+    color: red;
+    text-decoration: none;
+}
+
+.sign-col h1.logo,p.logo-txt{
+    font-family: 'Pacifico', cursive;   
+    color: black;
+    text-align: center;
+    margin-left:27% ;
+}
+
+.sign-col .logo{
+    font-size: 70px;
+}
+.sign-col .logo::after{
+    content: " ";
+    display: block;
+    background-color: #005d8f;
+    width: 100px;
+    height: 10px;
+    margin: auto;
+    border-top-left-radius: 60%;
+    border-bottom-left-radius: 100%;
+    border-top-right-radius: 100%;
+    border-bottom-right-radius: 60%;
+}
+.sign-col p.logo-txt{
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.btn:focus, a:focus{
+    outline: none !important;;
+}
+
+
+@media screen and (max-width:1050px) {
+    .signup-row{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width:770px){
+    .signup-row{
+        flex-direction: column-reverse;
+        width: 100%;
+        justify-content: center;
+        background-size: cover;
+        /* height: fit-content; */
+    }
+    .sign-col{
+        margin: 5px auto;
+        width: 75%;
+    }
+    .sign-col h1.logo,p.logo-txt{
+        margin: 0 !important;
+        margin: 5px auto !important; 
+        color: whitesmoke; 
+    }
+    .sign-col h1.logo{
+        font-size: 50px;
+    }
+    form{
+        width: 100%;
+        padding: 0px;
+    }
+    form .tags{
+        margin: 5px 0;
+    }
+    form .tags input{
+        padding: 2px !important;
+    }
+    .sign-col .logo::after{
+        background-color: rgba(235, 235, 235, 0.689);
+    }
+    .sign-col .lnk{
+        margin: 0px;
+    }
+}
+
+@media screen and (max-width:575px) {
+   
+}
+
+

@@ -1,0 +1,305 @@
+/* -----------tweet section---------- */
+.card .card-body{
+    display: flex;
+    width: 100%;
+    height: 225px;
+}
+/* user-pic */
+.card .user-part{
+    width: 10%;
+    display: flex;
+    align-items: flex-end;
+    /* display: block;
+    margin-top: auto; */
+}
+.card .user-pic{
+    margin: 10px;
+    /* width: 60px;
+    height: 60px; */
+}
+.card .user-pic img{
+    width: 60px;
+    height: 60px;
+    border: 2px solid black;
+    border-radius: 50%;
+}
+/* tweet-form */
+.card .form-area{
+    width: 100%;
+    height: 200px;
+    margin: auto;
+    padding: 0px;
+    /* margin-top: -4px; */
+    /* display: inline-flex;
+    justify-content:center;
+    align-items: center; */
+    /* background-color: black; */
+}   
+
+.card .form-area .text-class{
+    /* margin: 10px auto; */
+    margin-bottom: 10px;
+    border: none;
+    outline: 5px solid white;
+    resize: none;
+}
+
+.card .form-area #counts{
+    margin-top: -30px;
+    margin-right: 15px;
+    color: grey;
+    float: right;
+}
+
+.card .form-area .input-image{
+    width: 42px;
+    height: 42px;
+    margin: 10px 15px;
+    background-color: black;
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+.card .form-area .input-image .image-class{
+    /* visibility :hidden; */
+    display: none;
+}
+.card .form-area .input-image i{
+    font-size: 26px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 300;
+    margin: 5px;
+}
+.card .form-area .fa-check{
+    display: none;
+    font-size: 22px;
+    margin-left: -5px;
+    cursor: pointer;
+}
+.card .form-area .fa-times{
+    display: none;
+    font-size: 22px;
+    margin-left: -5px;
+    color: red;
+    cursor: pointer;
+}
+.card .form-area .btn{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: black;
+    color: white;
+    outline: 5px solid white;
+    float: right;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+}
+.card .form-area .btn i{
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -3px;
+}
+.card .form-area .btn:hover,
+.card .form-area .input-image:hover{
+    background: rgba(212, 211, 211, 0.76);
+    color: black; 
+}
+.card .image-preview{
+    margin: auto;
+}
+.card #image_pre img{
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+.alert{
+    margin-bottom: 0px;
+}
+.btn-close:focus {
+    box-shadow: none !important;
+}
+/* --------------end tweet section------------ */
+
+/* ---------------Tweet-show --------------- */
+.tweet-show-area{
+    margin-top: 25px;
+}
+.tweet-show{
+    width: 100%;
+    display: flex;
+    /* border-bottom: 1px solid lightgray; */
+    padding: 15px;
+    /* max-height: 800px; */
+}
+
+.tweet-show:hover{
+    background: white;
+}
+/* user-pic */
+.tweet-show .user-part{
+    /* width: 70px; */
+    /* display: block; */
+    display: flex;
+    width: 10%;
+}
+.tweet-show .user-pic{
+    margin:10px auto;
+    /* margin-top: 10px; */
+    border: none;
+}
+.tweet-show .user-pic img{
+    width: 45px;
+    height: 45px;
+}
+/* tweet username, text and image */
+/* username part */
+.tweet-show .tweet-part{
+    margin: auto 0px;
+    padding: 5px 15px;
+    width: 93%;
+}
+.tweet-show .tweet-part .user-action{
+    display: flex;
+    height: 50px;
+    /* background: black; */
+    align-items: center;
+}
+.tweet-show .user-action .user-name .user-det{
+    display: inline-flex;
+    height: fit-content;
+}
+.tweet-show .user-action .user-name .user-det a{
+    text-decoration: none;
+    color: black;
+}
+.tweet-show .user-action .user-name .user-det a:hover{
+    border-bottom: 2px solid black;
+}
+.tweet-show .user-action .user-name .user-det h4{
+    margin: auto;
+}
+.tweet-show .user-action .user-name .user-det p::before{
+    content: '-';
+    margin: auto 5px;
+    color: lightgray;
+}
+.tweet-show .user-action .user-name .user-det p{
+    margin: auto;
+}
+.tweet-show .user-action .user-name small{
+    display: block;
+    font-size: 12px;
+}
+
+/* text part */
+.tweet-show .tweet-part .tweet-text,.tweet-show .tweet-part .tweet-pic{
+    margin-top:10px;
+    text-align: justify;
+}
+/* image part */
+.tweet-show .tweet-part .tweet-pic{
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+.tweet-show .tweet-part .tweet-pic .post-in-pic{
+    padding: 5px;
+}
+.tweet-show .tweet-part .tweet-pic .post-in-pic img{
+    width: 100%;  
+    max-height: 400px; 
+}
+
+/* .tweet-part .tweet-like button.likea, .tweet-part .tweet-like button.liked{
+    background-color: transparent;
+    border: none;
+    margin:5px;
+} */
+.tweet-part .tweet-like button{
+    color: rgba(97, 95, 95, 0.26);
+    background: transparent;
+    border: none;
+}
+
+.tweet-part .tweet-like button:focus{
+    border: none !important;
+    outline: none !important;
+}
+
+
+@media screen and (max-width:1050px) {
+    
+    /* tweet */
+    .card .user-part{
+        width: 12%;
+        /* background-color: aqua; */
+    }
+    .card .user-pic{
+        margin: 12px;
+    }
+    .card .user-pic img{
+        width: 50px;
+        height: 50px;
+    }
+    /* end tweet */
+}
+
+@media screen and (max-width:575px) {
+    /* Tweet */
+    .card .user-part{
+        display: none;
+    }
+    .card .card-body{
+        height: 200px;
+    }
+    .card .form-area .btn, 
+    .card .form-area .input-image{
+        width: 40px;
+        height: 40px;
+    }
+    .card .form-area .btn i{
+        font-size: 20px;
+    }
+    .tweet-show{
+        padding: 10px;
+    }
+    .tweet-show .user-part{
+        width: 15%;
+    }
+    .tweet-show .tweet-part{
+        padding: 5px;
+    }
+    .tweet-show-area .card{
+        width: 75% !important;
+    }
+    .tweet-show-area .card h5{
+        margin-bottom: 0;
+        font-size: 18px;
+    }
+    .tweet-show .user-action .user-name .user-det{
+        display: flex;
+        flex-direction: column;
+    }
+    .tweet-show .user-action .user-name .user-det h4{
+        font-size: 16px;
+    }
+    .tweet-show .user-action .user-name .user-det p{
+        font-size: 14px;
+        margin: 0;
+    }
+    .tweet-show .tweet-part .tweet-text{
+        margin-top: 15px;
+        line-height: 1.1rem;
+    }
+    /* EndTweet */
+}

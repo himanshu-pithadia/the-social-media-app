@@ -1,0 +1,360 @@
+*{
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+}
+/* header top area */
+
+.first-div{
+    top: 0;
+    left: 0;
+    position: sticky;
+    width: 100%;
+    background-color: black;
+    height: 75px;
+    color: whitesmoke;
+    /* display: flex;
+    align-items: center;
+    justify-content: space-between; */
+    z-index: 100;
+}
+.first-div .header-class{
+    height: 75px;
+    display: flex;
+    justify-content: space-between;
+}
+.header-class > div{
+    margin: auto 25px;
+}
+.logo a{
+    text-decoration: none;
+    color: black;
+}
+.logo{
+    background: white;
+    /* margin: auto 20px; */
+    border-radius: 100%;
+    cursor: pointer;
+}
+
+.logo-txt{
+    font-family: 'Pacifico', cursive;
+    padding: 10px;
+    margin: auto;
+    text-align: center;
+    font-size: 32px;
+    letter-spacing: 1px;
+}
+
+p.wlc{
+    /* padding: auto 10px; */
+    /* margin: auto 20px; */
+    font-size: 20px;
+    margin: auto;
+    /* padding: 10px; */
+}
+.header-class .user-pic{
+    display: none;
+}
+/* end Header top */
+
+
+/* Start Main-class */
+.main-class{
+    width: 100%;
+    /* margin-top: 70px; */
+}
+/* End Main-class */
+
+
+/* Sidebar - 1 */
+
+/* menu */
+
+.menu{
+    width: 15%;
+    background-color: rgb(0, 0, 0);
+    height: 100vh;
+    position: fixed;
+    /* left: 0; */
+    /* margin-left: -12px; */
+    display: block;
+    color: white;
+    /* float: left; */
+}
+.menu .menu-start{
+    padding-left: 10px;
+    height: 100%;
+    width: 100%;
+}
+
+.menu-start::-webkit-scrollbar{
+    width: 5px;
+    background-color: rgba(0, 0, 0, 0.142);
+    border-radius: 50px;
+}
+.menu-start::-webkit-scrollbar-thumb{
+    border-radius: 50px;
+    background-color: rgba(255, 255, 255, 0.231);
+}
+.menu ul, .menu ul li a{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.menu ul li a{
+    display: block;
+    margin: 15px auto;
+    padding: 20px;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+.menu ul li a i{
+    width: 20px;
+    margin-right: 5px;
+}
+.menu .menu-item a.active,
+.menu .menu-item a:hover{
+    color: black;
+    background-color: white;
+    border-bottom-left-radius: 50px;
+    border-top-left-radius: 50px;
+    transition: ease-in 250ms;
+}
+
+/* user-info */
+.menu .user-info{
+    bottom: 0;
+    position: fixed;
+    width: inherit;
+    padding: 10px 20px;
+    background-color: rgb(52, 51, 51);
+}
+.menu .user-info .user-details{
+    display: flex;
+    align-items: center;
+}
+.user-pic img{
+    width:40px;
+    height: 40px;
+    border-radius: 50%;
+}
+.user-details p{
+    margin-left: 10px;
+    margin-bottom: 0%;
+}
+/* End user-info */
+/* End menu */
+
+
+/* old */
+/* .menu ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    margin-top: 50px;
+    text-align: center;
+}
+.menu ul li{
+    font-size: 30px;
+    font-weight: 600; 
+    margin: 30px auto;
+    padding: 15px;
+    display: block;
+    width: 200px;
+}
+.menu a{
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+.menu .active{
+    border-radius: 50px;
+    width: 200px;
+    background-color: whitesmoke;
+    color: black;
+}
+.menu ul li:hover{
+    background: whitesmoke;
+    border-radius: 50px;
+    background-color: whitesmoke;
+    color: black;
+} */
+/* end menu */
+
+/* user-box */
+/* .user-info{
+    color: white;
+    height: 70px;
+    bottom: 0;
+    position: fixed;
+    width: 23%;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-pic{
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    border-radius: 50%;
+    border: 3px solid black;
+    margin: auto 10px;
+}
+.user-pic img{
+    margin: auto;
+    width:40px;
+    height: 40px;
+    margin-top: -0.5px;
+    margin-left: -0.8px;
+    padding-left: -3px;
+    border-radius: 50%;
+}
+.user-name{
+    margin: auto 0px;
+    font-size: 20px;
+} */
+/* end user-box */
+/* close Old */
+
+/* end Sidebar - 1 */
+
+/* Sidebar - 2 */
+.main-class .section2{
+    width: 85%;
+    background-color: white;
+    padding: 0px 20px;
+    /* border-left: 2px solid lightgrey;
+    border-right: 2px solid lightgrey; */
+    margin-left: 15%;
+    /* float: right; */
+}
+.main-class .section2 .all-disp{
+    padding: 20px;
+    border-left: 1px solid lightgrey;
+    border-right: 1px solid lightgrey;
+}
+.main-class .all-disp .content{
+    width: 100%;
+    background: rgba(245, 245, 245, 0.39);
+    border-radius: 25px;
+    padding: 25px;
+}
+/* .main-class .content{
+    width: 100%;
+    background: rgba(245, 245, 245, 0.39);
+    border-radius: 25px;
+    padding: 25px;
+    margin:auto 25px;
+} */
+/* end sidebar - 2 */
+
+
+/* Start Responsive */
+
+@media screen and (max-width:1050px) {
+    /* Header part */
+    .first-div, .first-div .header-class{
+        height: 60px;
+    }
+    .logo-txt{
+        font-size: 28px;
+    }
+    .header-class > div{
+        margin: auto 20px;
+    }
+    /* End Header PArt */
+
+    
+}
+
+@media screen and (max-width:770px){
+    /* menu */
+    .menu{
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.884);
+        height: 60px;
+        bottom: 0;
+        z-index: 3;
+    }
+    .menu .menu-start{
+        overflow: hidden;
+    }
+    .menu .menu-item{
+        height: 60px;
+        width: 100%;
+        display: inline-flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .menu .menu-item li a{
+        font-size: 20px;
+        cursor: pointer;
+        width: 0px;
+        margin: 0px;
+        padding: 0px;
+        color: rgba(245, 245, 245, 0.449);
+        margin-left: -10px;
+    }
+    .menu .user-info, .menu li a span{
+        display: none;
+    }
+    .menu .menu-item a.active, .menu .menu-item a:hover{
+        color: white;
+    }
+    /* End menu */
+    .main-class .section2{
+        width: 100%;
+        margin-left: 0%;
+        padding: 0px;
+    }
+    .main-class .section2 .all-disp{
+        padding: 0px;
+        border-left: none;
+        border-right: none;
+        margin-bottom: 30px;
+    }
+    .main-class .section2 .all-disp{
+        padding: 15px;
+    }
+}
+
+@media screen and (max-width:575px) {
+    /* Header part */
+    .first-div, .first-div .header-class{
+        height: 50px;
+    }
+    .header-class .wlcu{
+        display: none;
+    }
+    .header-class .user-pic{
+        display: block;
+    }
+    .header-class > div{
+        margin: auto 10px;
+    }
+    .logo-txt{
+        font-size: 22px;
+    }
+    .user-pic img{
+        width:40px;
+        height: 40px;
+        border-radius: 50%;
+    }
+    /* End Header PArt */
+    /* section-2 */
+    .all-disp{
+        margin-bottom: 30px;
+    }
+    .p-3{
+        padding: 0rem !important;
+    }
+    .content{
+        padding: 15px 10px !important;
+    }
+}

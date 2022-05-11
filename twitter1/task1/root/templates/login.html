@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Login | TalkSnap</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+        <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+    </head>
+    <body>
+        <div class="container signup">
+            <div class="container signup-in">
+                <div class="row signup-row">
+                    <div class="col-md-6 sign-col">
+                        <h3>Login</h3>
+                        <form action="" method="POST" novalidate>
+                            {% csrf_token %}
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <div class="alert alert-{{message.tags}} alert-dismissible fade show p-1 pt-2" role="alert">
+                                        <h6 class="err">{{message}}</h6>
+                                        <button type="button" class="btn-close btn-sm p-2 pt-3 d-flex align-self-center" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                {% endfor %}
+                            {% elif form.non_field_errors %}
+                                {% for error in form.non_field_errors %}
+                                    <div class="alert alert-warning alert-dismissible fade show p-1 pt-2" role="alert">
+                                        <p class="err">{{error}}</p>
+                                        <button type="button" class="btn-close btn-sm p-2 pt-3 d-flex align-self-center" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                            {% for fm in form %}
+                                <div class="tags">
+                                    {{fm.label_tag}} {{fm}} <small class="text-danger">{{fm.errors |striptags}}</small>
+                                </div>
+                            {% endfor %}
+                            <button type="submit" class="btn btn-primary w-100 my-2">Login</button>
+                        </form>
+                        <p class="lnk">Don't Have an account? <a href="{% url 'signup' %}">Sign-Up</a></p>
+                    </div>
+                    <div class="col-md-6 sign-col">
+                        <h1 class="logo">TalkSnap</h1>
+                        <p class="logo-txt lnk">Let's share precious moments</p>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <script src="{% static 'js/jquery.js' %}"></script>
+        <script src="{% static 'js/popper.js' %}"></script>
+        <script src="{% static 'js/bootstrap.js' %}"></script> 
+    </body>
+</html>

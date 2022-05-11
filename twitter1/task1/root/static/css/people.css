@@ -1,0 +1,90 @@
+.people-list{
+    padding:15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 75px;
+}
+
+.people-list:hover{
+    background-color: white;
+}
+.people-list .users-info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.people-list .users-info .user-pic{
+    border: none;
+    align-items: center;
+}
+
+.people-list .users-info .user-det{
+    display: inline-flex;
+    align-items: center;
+    margin-left: 8px;
+}
+.people-list .users-info .user-det a h5{
+    margin-bottom: 0;
+}
+
+.people-list .users-info .user-det a{
+    text-decoration: none;
+    color: black;
+    margin: auto;
+}
+
+.people-list .users-info .user-det p{
+    margin: auto 8px;
+    margin-bottom: 0 !important;
+    /* margin-top: -5px ; */
+} 
+
+.people-list .follow-btn button{
+    outline: 5px solid white;
+    transition: all ease 500ms;
+}
+
+.people-list .follow-btn .change{
+    background: white;
+    color: black;
+}
+
+.serch .form-control:focus{
+    border: 1px solid gainsboro;
+    box-shadow: none;
+}
+
+.serch button:focus{
+    outline: 5px solid whitesmoke;
+}
+
+
+@media screen and (max-width:575px) {
+    .people-list .users-info .user-det{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        /* text-align: flex-start; */
+    }
+    .people-list .users-info .user-det a h5{
+        font-size: 16px;
+    }
+    .people-list .users-info .user-det p{
+        text-align: left;
+        display: block;
+        margin: 0;
+        font-size: 12px;
+    }
+    .people-list .follow-btn button{
+        width: 100%;
+        padding: 5px;
+        font-size: 14px;
+    }
+    
+}
+
+
+

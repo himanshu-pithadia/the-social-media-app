@@ -1,0 +1,231 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home | TalkSnap{% endblock title %}
+{% block extracss %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock extracss %}
+
+{% block section1 %}
+    <div class="tweet-section">
+        <div class="card">
+            <div class="card-body">
+                <div class="user-part">
+                    <div class="user-pic">
+                        <a href="{% url 'profile' user.username %}">
+                            {% if user.profile.profile_image %}
+                            <img src="{{user.profile.profile_image.url}}" id="profile_pic" alt="#">
+                            {% else %}
+                            <img src="{% static '../static/images/default.png' %}" id="profile_pic" alt="#">
+                            {% endif %}
+                        </a>
+                    </div>
+                </div>
+                <div class="form-area">
+                    <form action="" method="POST" novalidate class="p-3" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{form.post_text}}
+                        <span>
+                            <small id="counts">280/280</small>
+                        </span>
+                        <span class="input-image">
+                            <label for="id_post_image">
+                                <i class="far fa-image"></i>
+                            </label>
+                            {{form.post_image}}
+                        </span>
+                        <i class="fas fa-check" id="done" onmouseover="showi(this)" onmouseout="hidei(this)"></i>
+                        <i class="fas fa-times" id='undone' onclick="undone(this)"></i> 
+                        <button type="submit" class="btn"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="image-preview">
+                <div id="image_pre"></div>
+            </div>
+            <div class="card-footer">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{message.tags}} alert-dismissible fade show p-1 pt-2" role="alert">
+                            <h6 class="err">{{message |safe}}</h6>
+                            <button type="button" class="btn-close btn-sm p-2 pt-3" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="tweet-show-area">
+        <h5 class="m-3 p-2">Tweets from your Followings</h5>
+            {% if user.profile.following.all|length == 0 %}
+                <div class="card p-2 text-center mx-5 my-4 w-75">
+                    <h5>No post from your followings</h5>
+                </div>
+            {% endif %}
+        {% for t in tw %}
+            {% if t.user in user.profile.following.all or t.user == request.user %}
+            <div class="tweet-show">
+                <div class="user-part">
+                    <div class="user-pic">
+                        <a href="{% url 'profile' t.user.username %}">
+                            {% if t.user.profile.profile_image %}
+                                <img src="{{t.user.profile.profile_image.url}}" id="profile_pic" alt="#">
+                                {% else %}
+                                <img src="{% static '../static/images/default.png' %}" id="profile_pic" alt="#">
+                            {% endif %}
+                        </a>
+                    </div>
+                </div>
+                <div class="tweet-part">
+                    <div class="user-action">
+                        <div class="user-name">
+                            <div class="user-det">
+                                <a href="{% url 'profile' t.user.username %}">
+                                    <h4>{{t.user.first_name}} {{t.user.last_name}}</h4>
+                                </a>
+                                <p class="text-muted">@{{t.user.username}}</p>
+                            </div>
+                            <small class="text-muted">{{t.post_date | date:'d F Y'}}</small>
+                        </div>
+                    </div>
+                    {% if t.post_text %}
+                    <div class="tweet-text">
+                        <p class="text-show">{{t.post_text}}</p>
+                    </div>
+                    {% endif %}
+                    {% if t.post_image %}
+                    <div class="tweet-pic">
+                        <div class="post-in-pic">
+                            <img src={{t.post_image.url}} alt="image">
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div class="tweet-like m-3">
+                        <button type="submit" id="{{t.id}}" class="likea"  {% if user in t.likes.all %} style="color:red;" {% endif %} onclick="myfunction({{t.id}})"  url="{% url 'like' t.id %}">
+                            <i class="fas fa-thumbs-up"></i>
+                        </button>
+                        <span class="mx-1" id="l_{{t.id}}">{{t.likes.all.count}}</span>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        {% endfor %}
+
+        <h5 class="m-3 p-2">Tweets Shared by other peoples</h5>
+
+        {% for t in tw %}
+            {% if t.user not in user.profile.following.all and t.user != request.user %}
+            <div class="tweet-show">
+                <div class="user-part">
+                    <div class="user-pic">
+                        <a href="{% url 'profile' t.user.username %}">
+                            {% if t.user.profile.profile_image %}
+                                <img src="{{t.user.profile.profile_image.url}}" id="profile_pic" alt="#">
+                                {% else %}
+                                <img src="{% static '../static/images/default.png' %}" id="profile_pic" alt="#">
+                            {% endif %}
+                        </a>
+                    </div>
+                </div>
+                <div class="tweet-part">
+                    <div class="user-action">
+                        <div class="user-name">
+                            <div class="user-det">
+                                <a href="{% url 'profile' t.user.username %}">
+                                    <h4>{{t.user.first_name}} {{t.user.last_name}}</h4>
+                                </a>
+                                <p class="text-muted">@{{t.user.username}}</p>
+                            </div>
+                            <small class="text-muted">{{t.post_date | date:'d F Y'}}</small>
+                        </div>
+                    </div>
+                    {% if t.post_text %}
+                    <div class="tweet-text">
+                        <p class="text-show">{{t.post_text}}</p>
+                    </div>
+                    {% endif %}
+                    {% if t.post_image %}
+                    <div class="tweet-pic">
+                        <div class="post-in-pic">
+                            <img src={{t.post_image.url}} alt="image">
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div class="tweet-like m-3">
+                        <button type="submit" id="{{t.id}}" class="likea"  {% if user in t.likes.all %} style="color:red;" {% endif %} onclick="myfunction({{t.id}})"  url="{% url 'like' t.id %}">
+                            <i class="fas fa-thumbs-up"></i>
+                        </button>
+                        <span class="mx-1" id="l_{{t.id}}">{{t.likes.all.count}}</span>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        {% endfor %}
+        
+    </div>
+{% endblock section1 %}
+
+{% block extrajs %}
+    {{block.super}}
+    <script>
+
+        const textInput = document.getElementById('text-area-input');
+        const text_count = document.getElementById('counts');
+
+        textInput.addEventListener('input', () => {
+            const remains = 280 - textInput.value.length;
+
+            text_count.innerHTML = remains + '/' + 280;
+        });
+
+        function showi(x){
+            x.style.display = 'none';
+            document.getElementById('undone').style.display = 'inline-block';
+        }
+        function hidei(x){
+            x.style.display = 'inline-block';
+            document.getElementById('undone').style.display = 'none';
+        }
+        function donef(x){
+            document.getElementById('done').style.display = 'inline-block';
+            
+            if(event.target.files.length > 0){
+                var src = URL.createObjectURL(event.target.files[0]);
+                var img = document.createElement('img'); 
+                img.src = src;
+                img.id = 'img_pre';
+	            document.getElementById('image_pre').appendChild(img);
+            };
+        }
+        function undone(x){
+            document.getElementById('id_post_image').value = '';
+            document.getElementById('done').style.display = 'none';
+            document.getElementById('img_pre').style.display = 'none';
+        }
+    </script>
+    <script>
+        function myfunction(n){
+            let likebtn = document.getElementById(n);
+            let myurl = document.getElementById(n).getAttribute('url');
+            let like = document.getElementById('l_'+n);
+
+            const xhr = new XMLHttpRequest();
+            xhr.open('get',myurl,true);
+            xhr.responseType = 'json';
+            xhr.onload = () => {
+                if(xhr.status === 200){
+                    x = xhr.response;
+                    console.log(x['total']);
+                    like.innerHTML = x['total'];
+                }
+            };
+            xhr.send();
+            if (likebtn.style.color == 'red'){
+                likebtn.style.color = 'rgba(97, 95, 95, 0.26)';
+            }
+            else{
+                likebtn.style.color = 'red';
+            }
+        }
+    </script>
+{% endblock extrajs %}

@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Base page{% endblock title %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% block extracss %}{% endblock extracss %}
+</head>
+<body>
+    <div class="first-div">
+        <div class="header-class">
+            <div class="logo">
+                <a href="{% url 'home' %}">
+                    <h2 class="logo-txt">TalkSnap</h2>
+                </a>
+            </div>
+           <div class="wlcu">
+                <p class="wlc">Welcome, <b>{{user.first_name}} {{user.last_name}}</b></p>
+            </div>
+            <div class="user-pic">
+                {% if user.profile.profile_image %}
+                    <img src="{{user.profile.profile_image.url}}" alt="#">
+                {% else %}
+                    <img src="{% static '../static/images/default.png' %}" alt="#">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="main-class">
+        <div class="menu">
+            <div class="menu-start">
+                <ul class="menu-item">
+                    <li title="Home">
+                        <a href="{% url 'home' %}" {% if request.resolver_match.url_name == 'home' %}class="active"{% endif %}>
+                            <i class="fas fa-home"></i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li title="Tweet">
+                        <a href="{% url 'tweet' %}" {% if request.resolver_match.url_name == 'tweet' %}class="active"{% endif %}>
+                            <i class="fas fa-paper-plane"></i>
+                            <span>Tweet</span>
+                        </a>
+                    </li>
+                    <li title="People">
+                        <a href="{% url 'people' %}" {% if request.resolver_match.url_name == 'people' or request.resolver_match.url_name == 'search' %}class="active"{% endif %}>
+                            <i class="fas fa-user-friends"></i>
+                            <span>People</span>
+                        </a>
+                    </li>
+                    <li title="Profile">
+                        <a href="{% url 'profile' user.username %}" {% if request.resolver_match.url_name == 'profile' or request.resolver_match.url_name == 'editprofile' or request.resolver_match.url_name == 'followers'  or request.resolver_match.url_name == 'followings' %}class="active"{% endif %}>
+                            <i class="fas fa-user-circle"></i>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                    <li title="Logout">
+                        <a href="{% url 'logout' %}">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Logout</span>
+                        </a>
+                    </li>
+                </ul>                    
+            </div>
+            <div class="user-info">
+                <div class="user-details">
+                    <div class="user-pic">
+                        {% if user.profile.profile_image %}
+                            <img src="{{user.profile.profile_image.url}}" alt="#">
+                        {% else %}
+                            <img src="{% static '../static/images/default.png' %}" alt="#">
+                        {% endif %}
+                    </div>
+                    <p class="user-name">
+                        @{{user.username}}
+                    </p>
+                </div>
+            </div>
+        </div>
+            
+        <div class="section2">
+            <div class="all-disp">
+                <div class="content">
+                    {% block section1 %}{% endblock section1 %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/popper.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    {% block extrajs %}
+    {% endblock extrajs %}
+</body>
+</html>
